@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Birthday Surprise for Hammad ❤️</title>
+<style>
+body{
+  margin:0;
+  background:#000;
+  font-family:Arial, sans-serif;
+  overflow:hidden;
+  color:white;
+  text-align:center;
+}
+
+/* Curtains */
+.curtain{
+  position:fixed;
+  top:0;
+  width:50%;
+  height:100%;
+  background: linear-gradient(rgba(139,0,0,0.85), rgba(178,34,34,0.85));
+  z-index:2;
+  transition:2s ease;
+}
+#leftCurtain{left:0;}
+#rightCurtain{right:0;}
+.open-left{transform:translateX(-100%);}
+.open-right{transform:translateX(100%);}
+
+/* Password box */
+#login{
+  position:absolute;
+  top:35%;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:10;
+  background: rgba(0,0,0,0.6);
+  padding:30px 40px;
+  border-radius:20px;
+  box-shadow:0 0 30px #ff4d6d,0 0 60px #ff4d6d inset;
+  animation:pulse 2s infinite alternate;
+}
+@keyframes pulse{
+ 0%{box-shadow:0 0 30px #ff4d6d,0 0 60px #ff4d6d inset;}
+ 100%{box-shadow:0 0 50px #ff69b4,0 0 80px #ff69b4 inset;}
+}
+#login input{
+  padding:12px;
+  border-radius:15px;
+  border:none;
+  width:220px;
+  font-size:16px;
+}
+#login button{
+  padding:12px 20px;
+  margin-top:15px;
+  border-radius:15px;
+  border:none;
+  background:white;
+  color:#ff4d6d;
+  font-weight:bold;
+  cursor:pointer;
+  transition:0.3s;
+}
+#login button:hover{
+  background:#ff4d6d;
+  color:white;
+}
+
+/* Open Me button */
+#openCurtainBtn{
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  padding:25px 50px;
+  font-size:28px;
+  font-weight:bold;
+  color:white;
+  background: linear-gradient(135deg,#ff4d6d,#ff69b4);
+  border:none;
+  border-radius:30px;
+  cursor:pointer;
+  z-index:11;
+  box-shadow:0 0 30px #ff69b4,0 0 60px #ff4d6d inset;
+  display:none;
+}
+#openCurtainBtn:hover{
+  transform:translate(-50%,-50%) scale(1.1);
+  box-shadow:0 0 40px #ff69b4,0 0 80px #ff4d6d inset;
+}
+
+/* Sections */
+.section{
+  opacity:0;
+  display:none;
+  transition:2s;
+  position:relative;
+  z-index:3;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  text-align:center;
+  overflow:hidden;
+}
+
+/* Glow text */
+.glow{
+  font-size:38px;
+  text-shadow:0 0 15px #fff,0 0 30px #ff4d6d,0 0 50px #ff4d6d;
+  margin-top:20px;
+}
+
+/* Section 2 & 5 typewriter */
+#section2,#section5{
+  justify-content:flex-start;
+  padding-top:60px;
+}
+#envelopeFinal{
+  width:250px;
+  height:120px;
+  background: linear-gradient(135deg, #ff4d6d, #ff69b4);
+  border-radius:20px;
+  cursor:pointer;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:40px;
+  font-weight:bold;
+  color:white;
+  box-shadow:0 0 25px #ff69b4,0 0 50px #ff4d6d inset;
+  transition:0.3s;
+}
+#envelopeFinal:hover{
+  transform:scale(1.1);
+  box-shadow:0 0 35px #ff69b4,0 0 60px #ff4d6d inset;
+}
+
+.typewriter{
+  display:inline-block;
+  border-right:2px solid #ff4d6d;
+  animation:blink 0.5s step-end infinite;
+}
+@keyframes blink{50%{border-color:transparent;}}
+#finalLetter.typewriter,#msg1.typewriter,#quizResult.typewriter{
+  font-size:16px;
+  margin-top:10px;
+  line-height:1.4;
+  white-space:pre-wrap;
+  opacity:0;
+  transition:opacity 1s;
+}
+
+/* Final photo */
+#finalPhoto{
+  width:300px; height:300px;
+  border-radius:50%;
+  border:5px solid #ff4d6d;
+  overflow:hidden;
+  margin:auto;
+  box-shadow:0 0 30px #ff4d6d,0 0 60px #ff4d6d inset;
+  animation:heartFloatZoom 4s ease-in-out infinite alternate;
+}
+@keyframes heartFloatZoom{
+ 0%{transform:translateY(0px) scale(1);}
+ 100%{transform:translateY(-15px) scale(1.05);}
+}
+
+.section button{
+  padding:12px 25px;
+  border-radius:20px;
+  border:none;
+  background:#ff4d6d;
+  color:white;
+  font-weight:bold;
+  font-size:16px;
+  cursor:pointer;
+  box-shadow:0 0 10px #ff4d6d,0 0 20px #ff4d6d inset;
+  margin-top:15px;
+  transition:0.3s;
+}
+.section button:hover{
+  transform:scale(1.1);
+  box-shadow:0 0 25px #ff69b4,0 0 40px #ff69b4 inset;
+}
+
+/* Petals & hearts */
+.petal,.heartParticle{
+  position:fixed;
+  top:-20px;
+  animation:fall linear forwards;
+  font-size:20px;
+}
+@keyframes fall{to{transform:translateY(110vh) rotate(360deg);opacity:0;}}
+
+/* Sparkles */
+.sparkle{
+  position:fixed;
+  top:0;
+  left:0;
+  font-size:5px;
+  color:#fff;
+  opacity:0.8;
+  pointer-events:none;
+  z-index:0;
+  animation:twinkle linear infinite;
+}
+@keyframes twinkle{
+  0%{transform:translateY(0) scale(1); opacity:0.5;}
+  50%{opacity:1;}
+  100%{transform:translateY(100vh) scale(0.8); opacity:0;}
+}
+
+canvas{
+  position:fixed;
+  top:0;
+  left:0;
+  pointer-events:none;
+  z-index:0;
+}
+</style>
+</head>
+<body>
+
+<div id="leftCurtain" class="curtain"></div>
+<div id="rightCurtain" class="curtain"></div>
+
+<div id="login">
+<h2>Enter Our Secret Code 💌</h2>
+<input type="password" id="pass" placeholder="Type password here">
+<br>
+<button onclick="checkPassword()">Begin</button>
+</div>
+
+<button id="openCurtainBtn" onclick="openCurtain()">Open me</button>
+
+<div id="sections">
+  <div id="section1" class="section">
+    <div class="glow">✨ My ✨ <p>Dear Little Hammad
+    🥰</p> </div>
+    <h2>🎂 Happiest Birthday to you 🎂</h2>
+    <button onclick="nextSection()">Letter To You </button>
+    <p>👉</p>
+  </div>
+
+  <div id="section2" class="section">
+    <h2 style="font-family:fantasy;">📩 A Letter From My Heart</h2>
+    <div id="envelopeFinal" onclick="openFinalLetter()">📩 Click Me</div>
+    <p id="finalLetter" class="typewriter"></p>
+    <button onclick="nextSection()">Let See Who Love You The Most😁</button>
+    <p>👉</p>
+  </div>
+
+  <div id="section3" class="section">
+    <h2>Who love you the most?</h2>
+    <p>click on the luckiest one
+     👇</p>
+    <button onclick="quizAnswer('correct')">Zarah 👰</button>
+    <button onclick="quizAnswer('wrong')">Everyone 🧑‍🤝‍🧑</button>
+    <button onclick="quizAnswer('wrong')">Friends 👬</button>
+    <p id="quizResult" class="typewriter"></p>
+    <button onclick="nextSection()">Small Suprise🥰</button>
+  </div>
+
+  <div id="section4" class="section">
+    <h2>A Little Surprise For You☺️</h2>
+    <button onclick="playVoice('voice1')">Play It Now 💖</button>
+    <audio id="voice1" src="Audio1.mp3"></audio>
+    <p>I Hope you'll Enjoy This Little Suprise of Mine baby🥹</p>
+    <button onclick="nextSection()">I Prayed Almighty....</button>
+    <p>👉</p>
+  </div>
+
+  <div id="section5" class="section">
+    <h2>💞 My prayers for you</h2>
+    <p id="msg1" class="typewriter"></p>
+    <button onclick="nextSection()">My one And Only 🥰</button>
+    <p>👉</p>
+  </div>
+
+  <div id="section6" class="section">
+  <h2>💖 </h2>
+  <img id="finalPhoto" src="lovie.jpg">
+  <button onclick="playVoice('voice2')">Play Me 💖</button>
+  <audio id="voice2" src="Audio2.mp3"></audio>
+  <button onclick="returnToStart()">Return to Start 🔄</button>
+</div>
+</div>
+
+<audio id="bgmusic" src="music.mp3" loop></audio>
+<canvas id="fireworksCanvas"></canvas>
+
+<script>
+    let musicStarted=false;
+   /* 🔊 AUDIO UNLOCK FOR MOBILE */
+let audioUnlocked = false;
+
+function unlockAudio() {
+  if (audioUnlocked) return;
+
+  document.querySelectorAll("audio").forEach(a => {
+    a.load();
+    let p = a.play();
+    if (p !== undefined) {
+      p.then(() => {
+        a.pause();
+        a.currentTime = 0;
+      }).catch(()=>{});
+    }
+  });
+
+  audioUnlocked = true;
+}
+
+document.addEventListener("click", unlockAudio, { once: true });
+document.addEventListener("touchstart", unlockAudio, { once: true });
+
+ 
+let currentSection=0;
+const sections=document.querySelectorAll('.section');
+const bgmusic=document.getElementById("bgmusic");
+
+
+function checkPassword(){
+  const pass=document.getElementById("pass").value;
+  if(pass==="hammad"){
+    document.getElementById("login").style.display="none";
+    document.getElementById("openCurtainBtn").style.display="block";
+  } else {
+    alert("Wrong code 💔");
+    document.getElementById("pass").value="";
+  }
+}
+
+function openCurtain(){
+  document.getElementById("openCurtainBtn").style.display="none";
+  document.getElementById("leftCurtain").classList.add("open-left");
+  document.getElementById("rightCurtain").classList.add("open-right");
+
+  setTimeout(()=>{
+    showSection(currentSection);
+    startDecorations();
+
+    // start background music safely
+    if(!musicStarted){
+      bgmusic.volume = 1;
+      bgmusic.currentTime = 0;
+      bgmusic.play().then(()=>{
+        musicStarted = true;
+      }).catch(()=>{});
+    }
+
+  },1500);
+}
+
+function showSection(index){
+  sections.forEach(s=>{ s.style.opacity=0; s.style.display="none"; });
+  const sec=sections[index];
+  sec.style.display="flex";
+  setTimeout(()=>sec.style.opacity=1,50);
+  if(sec.id==="section2") startPetals();
+  if(sec.id==="section5") typeMessage("msg1",
+"🌸 Allah bless you abundantly, my love.\n💖 May your heart always be filled with peace, joy, and courage.\n✨ May every step you take be guided with success and every dream come true.\n😊 May your life be filled with laughter, health, and endless blessings.\n💝 And may our love continue to grow stronger, bringing light and happiness.\n🙏 Ameen. 💞",80);
+}
+
+function nextSection(){
+  if(currentSection<sections.length-1){
+    currentSection++;
+    showSection(currentSection);
+  }
+}
+
+function returnToStart(){
+  currentSection=0;
+  sections.forEach(s=>{s.style.opacity=0; s.style.display="none";});
+  document.getElementById("leftCurtain").classList.remove("open-left");
+  document.getElementById("rightCurtain").classList.remove("open-right");
+  document.getElementById("openCurtainBtn").style.display="block";
+}
+
+function typeMessage(id,msg,speed=80){
+  const el=document.getElementById(id);
+  el.innerHTML="";
+  el.style.opacity=1;
+  let i=0;
+  function typeChar(){
+    if(i<msg.length){
+      el.innerHTML+=msg.charAt(i);
+      i++;
+      setTimeout(typeChar,speed);
+    }
+  }
+  typeChar();
+}
+
+function openFinalLetter(){
+  const letter="💌 My Dearest Hammad,\n💖 From the very first moment I met you, my world has been brighter, warmer, and full of love.\n✨ Every smile, every laugh, every little moment reminds me how lucky I am.\n😊 You are my heart, my happiness, my everything.\n💝 On your special day, I want you to know my love grows stronger every day.\n🎂 Happy Birthday, my Hammad. May this year bring endless joy, laughter, and all the love you deserve.\n❤️ Forever Yours, Zarah 💖";
+  typeMessage("finalLetter",letter,80);
+}
+
+function quizAnswer(status){
+  const el=document.getElementById("quizResult");
+ 
+  el.style.opacity=1;
+  if(status==="correct") el.innerHTML="🎉 Correct! Yes, I'm the one who love you the most!👩‍❤️‍👨";
+  else el.innerHTML="❌ No!!! 🙂‍↔️, This will not be true🙂‍↕️,\n Try Again";
+}
+
+function playVoice(id){
+  const audio=document.getElementById(id);
+  if(!audio) return;
+
+  // pause background music
+  if(bgmusic && !bgmusic.paused){
+    bgmusic.pause();
+  }
+
+  audio.currentTime = 0;
+
+  const playPromise = audio.play();
+
+  if(playPromise !== undefined){
+    playPromise.then(()=>{
+
+      audio.onended = () => {
+        if(bgmusic){
+          bgmusic.play().catch(()=>{});
+        }
+      };
+
+    }).catch(()=>{});
+  }
+}
+
+function startPetals(){
+  const symbols=["🌹","💖","✨"];
+  setInterval(()=>{
+    const p=document.createElement("div");
+    p.className="petal";
+    p.innerHTML=symbols[Math.floor(Math.random()*symbols.length)];
+    p.style.left=Math.random()*100+"vw";
+    p.style.fontSize=(15+Math.random()*25)+"px";
+    p.style.animationDuration=(4+Math.random()*3)+"s";
+    document.body.appendChild(p);
+    setTimeout(()=>p.remove(),7000);
+  },200);
+}
+
+function startDecorations(){
+  startSparkles();
+  startFireworks();
+}
+
+function startSparkles(){
+  const symbols=["✨","⭐","✦","✧"];
+  setInterval(()=>{
+    const s=document.createElement("div");
+    s.className="sparkle";
+    s.innerHTML=symbols[Math.floor(Math.random()*symbols.length)];
+    s.style.left=Math.random()*100+"vw";
+    s.style.fontSize=(5+Math.random()*10)+"px";
+    s.style.animationDuration=(5+Math.random()*5)+"s";
+    document.body.appendChild(s);
+    setTimeout(()=>s.remove(),10000);
+  },150);
+}
+
+const canvas=document.getElementById("fireworksCanvas");
+const ctx=canvas.getContext("2d");
+canvas.width=innerWidth; canvas.height=innerHeight;
+let particles=[];
+function random(min,max){return Math.random()*(max-min)+min;}
+function startFireworks(){
+  setInterval(()=>{
+    let x=random(100,canvas.width-100);
+    let y=canvas.height;
+    let targetY=random(100,canvas.height/2);
+    launchFirework(x,y,targetY);
+  },800);
+  animateFireworks();
+}
+function launchFirework(x,y,targetY){
+  let firework={x:x,y:y,targetY:targetY,exploded:false,particles:[]};
+  let interval=setInterval(()=>{
+    if(y>targetY){y-=5; firework.y=y;}
+    else{clearInterval(interval); explode(firework);}
+  },16);
+}
+function explode(firework){
+  const colors=["#ff4d6d","#ffd700","#00ffff","#ff69b4","#00ff00"];
+  for(let i=0;i<50;i++){
+    firework.particles.push({x:firework.x,y:firework.y,dx:random(-4,4),dy:random(-6,-1),color:colors[Math.floor(Math.random()*colors.length)],life:60});
+  }
+  particles.push(...firework.particles);
+}
+
+function animateFireworks(){
+  requestAnimationFrame(animateFireworks);
+  ctx.fillStyle="rgba(0,0,0,0.15)";
+  ctx.fillRect(0,0,canvas.width,canvas.height);
+  for(let i=particles.length-1;i>=0;i--){
+    let p=particles[i];
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,2,0,Math.PI*2);
+    ctx.fillStyle=p.color;
+    ctx.fill();
+    p.x+=p.dx; p.y+=p.dy; p.dy+=0.1;
+    p.life--;
+    if(p.life<=0) particles.splice(i,1);
+  }
+}
+</script>
+</body>
+</html>
